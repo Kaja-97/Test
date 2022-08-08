@@ -32,9 +32,6 @@ bot = telebot.TeleBot(API_KEY)
 
 
 ########### telegram bot'''#########################################
-@bot.message_handler(commands=['All'])
-def greet(message):
-    bot.reply_to(message,All )
     
 @bot.message_handler(commands=['A'])
 def greet(message):
@@ -131,9 +128,7 @@ def greet(message):
     
 @bot.message_handler(commands=['start'])
 def greet(message):
-    user_first_name = str(message.chat.first_name) 
-    bot.reply_to(message, f"Hey! {user_first_name} \n Welcome 😍")
-    bot.send_message(message,'Please type your zone , (ex :- /A ) , ' )
+    bot.send_message(message,f"Hey!  \n Welcome 😍 \n,Please type your zone , (ex :- /A )  " )
 
 ########### telegram bot'''#########################################
 driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
