@@ -32,27 +32,102 @@ bot = telebot.TeleBot(API_KEY)
 
 
 ########### telegram bot'''#########################################
-@bot.message_handler
-def test_start(message):
-  if msg.startswith('/test'):
-    bot.send_message(message.chat.id,'Hi Please enter your zone (ex : -  /W)')
+@bot.message_handler(commands=['All'])
+def greet(message):
+    bot.reply_to(message,Al )
+    
+@bot.message_handler(commands=['A'])
+def greet(message):
+    bot.reply_to(message,A )
+    
+    
+@bot.message_handler(commands=['B'])
+def greet(message):
+    bot.reply_to(message,B )
+    
+    
+@bot.message_handler(commands=['C'])
+def greet(message):
+    bot.reply_to(message,C )
+   
+    
+@bot.message_handler(commands=['D'])
+def greet(message):
+    bot.reply_to(message,D )
+ 
+    
+@bot.message_handler(commands=['E'])
+def greet(message):
+    bot.reply_to(message,E )
+    
+    
+@bot.message_handler(commands=['F'])
+def greet(message):
+    bot.reply_to(message,F )
+   
+    
+@bot.message_handler(commands=['G'])
+def greet(message):
+    bot.reply_to(message,G )
+    
+    
+@bot.message_handler(commands=['H'])
+def greet(message):
+    bot.reply_to(message,H )
+  
+    
+@bot.message_handler(commands=['I'])
+def greet(message):
+    bot.reply_to(message,I )
 
+
+@bot.message_handler(commands=['J'])
+def greet(message):
+    bot.reply_to(message,J )
+
+@bot.message_handler(commands=['K'])
+def greet(message):
+    bot.reply_to(message,K )
+
+@bot.message_handler(commands=['L'])
+def greet(message):
+    bot.reply_to(message,L )
+
+@bot.message_handler(commands=['P'])
+def greet(message):
+    bot.reply_to(message,P )
+    print(tt)
+@bot.message_handler(commands=['Q'])
+def greet(message):
+    bot.reply_to(message,Q )
+
+@bot.message_handler(commands=['R'])
+def greet(message):
+    bot.reply_to(message,R )
+
+@bot.message_handler(commands=['S'])
+def greet(message):
+    bot.reply_to(message,S )
+    
+@bot.message_handler(commands=['T'])
+def greet(message):
+    bot.reply_to(message,T )
+
+@bot.message_handler(commands=['U'])
+def greet(message):
+    bot.reply_to(message,U )
+
+@bot.message_handler(commands=['V'])
+def greet(message):
+    bot.reply_to(message,V )
 
 @bot.message_handler(commands=['W'])
 def greet(message):
-    bot.reply_to(message, mmm)
-    
-@bot.message_handler(content_types=['text'])
-def send_text(message):
-    if message.text.lower() =='Hello':
-        bot.send_message(message.chat.id, message.text.upper() )
-    elif message.text.lower() =='Bye':
-        bot.send_message(message.chat.id,'see you soom' )
-    elif message.text.lower() == 'I love you':
-        bot.send_sticker(message.chat.id, 'API_KEY')
-@bot.message_handler(content_types=['sticker'])
-def sticker_id(message):
-    print(message)
+    bot.reply_to(message,W )
+
+@bot.message_handler(commands=['hi'])
+def greet(message):
+    bot.reply_to(message,'Hello, type your zone (ex :- /A )' )
 
 ########### telegram bot'''#########################################
 driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
@@ -80,8 +155,71 @@ for a in gg:
 
 dic = {'Zone': Zone, 'Time': Time}
 table = pd.DataFrame(dic)
-tt = table[table['Zone'] == 'W']
-mmm = str(tt)
+
+
+AL=str(table)
+
+AA=table[table['Zone']=='A']
+A=str(AA)
+
+BB=table[table['Zone']=='B']
+B=str(BB)
+
+CC=table[table['Zone']=='C']
+C=str(CC)
+
+DD=table[table['Zone']=='D']
+D=str(DD)
+
+EE=table[table['Zone']=='E']
+E=str(EE)
+
+FF=table[table['Zone']=='F']
+F=str(FF)
+
+GG=table[table['Zone']=='G']
+G=str(GG)
+
+HH=table[table['Zone']=='H']
+H=str(HH)
+
+II=table[table['Zone']=='I']
+I=str(II)
+
+JJ=table[table['Zone']=='J']
+J=str(JJ)
+
+KK=table[table['Zone']=='K']
+K=str(KK)
+
+LL=table[table['Zone']=='LL']
+L=str(LL)
+
+PP=table[table['Zone']=='P']
+P=str(PP)
+
+QQ=table[table['Zone']=='Q']
+Q=str(QQ)
+
+RR=table[table['Zone']=='R']
+R=str(RR)
+
+SS=table[table['Zone']=='S']
+S=str(SS)
+
+TT=table[table['Zone']=='T']
+T=str(TT)
+
+UU=table[table['Zone']=='U']
+U=str(UU)
+
+VV=table[table['Zone']=='V']
+v=str(VV)
+
+WW=table[table['Zone']=='W']
+W=str(WW)
+
+
 
 bot.polling()
 
