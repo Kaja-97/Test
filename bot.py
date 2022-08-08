@@ -34,7 +34,7 @@ bot = telebot.TeleBot(API_KEY)
 ########### telegram bot'''#########################################
 @bot.message_handler(commands=['All'])
 def greet(message):
-    bot.reply_to(message,Al )
+    bot.reply_to(message,All )
     
 @bot.message_handler(commands=['A'])
 def greet(message):
