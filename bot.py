@@ -124,10 +124,16 @@ def greet(message):
 @bot.message_handler(commands=['W'])
 def greet(message):
     bot.reply_to(message,W )
-
-@bot.message_handler(commands=['hi'])
+    
+@bot.message_handler(commands=['I love you'])
 def greet(message):
-    bot.reply_to(message,'Hello, type your zone (ex :- /A )' )
+    bot.reply_to(message,'Me too ❤️' )
+    
+@bot.message_handler(commands=['start'])
+def greet(message):
+    user_first_name = str(message.chat.first_name) 
+    bot.reply_to(message, f"Hey! {user_first_name} \n Welcome 😍")
+    bot.send_message(message,'Please type your zone , (ex :- /A ) , ' )
 
 ########### telegram bot'''#########################################
 driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
@@ -157,7 +163,7 @@ dic = {'Zone': Zone, 'Time': Time}
 table = pd.DataFrame(dic)
 
 
-AL=str(table)
+All=table
 
 AA=table[table['Zone']=='A']
 A=str(AA)
