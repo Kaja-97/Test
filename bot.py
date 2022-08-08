@@ -32,7 +32,6 @@ bot = telebot.TeleBot(API_KEY)
 
 
 ########### telegram bot'''#########################################
-    
 @bot.message_handler(commands=['A'])
 def greet(message):
     bot.reply_to(message,A )
@@ -128,8 +127,9 @@ def greet(message):
     
 @bot.message_handler(commands=['start'])
 def greet(message):
-    bot.send_message(message,f"Hey!  \n Welcome 😍 \n,Please type your zone , (ex :- /A )  " )
-
+#     user_first_name = str(message.chat.first_name) 
+    bot.reply_to(message, f"Hey!  \n Welcome 😍 \n,Please type your zone , (ex :- /A )  ")
+    
 ########### telegram bot'''#########################################
 driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
 url='https://cebcare.ceb.lk/Incognito/DemandMgmtSchedule'
@@ -154,11 +154,11 @@ for a in gg:
     zone=a.find('span',class_='badge border border-light text-light fw-500').getText()
     Zone.append(zone)
 
-dic = {'Zone': Zone, 'Time': Time}
-table = pd.DataFrame(dic)
 
 
-All=table
+dic={'Zone':Zone,'Time':Time}
+table=pd.DataFrame(dic)
+
 
 AA=table[table['Zone']=='A']
 A=str(AA)
@@ -219,6 +219,7 @@ v=str(VV)
 
 WW=table[table['Zone']=='W']
 W=str(WW)
+
 
 
 
