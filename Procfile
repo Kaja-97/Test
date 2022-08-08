@@ -1,1 +1,1 @@
-worker:python bot.py
+worker: lein run -m bot.worker
