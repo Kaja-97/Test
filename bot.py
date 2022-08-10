@@ -36,10 +36,10 @@ def greet(message):
     today=datetime.datetime.now().strftime('%Y-%m-%d')
     chat_id=message.chat.id
     pagelist=[]
-#     paperlist=[]
+    paperlist=[]
     for i in range(1,11):
         ur='https://epaper.virakesari.lk/newspaper/Daily/main/{}#page-{}'.format(today,i)
-#         pagelist.append(ur)
+        pagelist.append(ur)
     for i,ii in enumerate(pagelist,start=1):
         options=webdriver.ChromeOptions()
         options.headless = True
