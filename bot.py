@@ -15,8 +15,8 @@ import telebot
 from telebot import types
 from dotenv import load_dotenv
 
-import selenium 
-import datetime
+# import selenium 
+# import datetime
 
 
 config = load_dotenv(".env")
@@ -33,21 +33,24 @@ bot = telebot.TeleBot(API_KEY)
 ############################################### news paper###################################
 @bot.message_handler(commands=['Paper'])
 def greet(message):
-    today=datetime.datetime.now().strftime('%Y-%m-%d')
-    chat_id=message.chat.id
-    pagelist=[]
-    paperlist=[]
-    for i in range(1,11):
-        ur='https://epaper.virakesari.lk/newspaper/Daily/main/{}#page-{}'.format(today,i)
-        pagelist.append(ur)
-    for i,ii in enumerate(pagelist,start=1):
-        options=webdriver.ChromeOptions()
-        options.headless = True
-        driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
-        driver.get(url=ii)
-        soup=BeautifulSoup(driver.page_source,'html')
-        paperpg=soup.find('img',id='pageImage')['src']
-        bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
+    try:
+        today=datetime.datetime.now().strftime('%Y-%m-%d')
+        chat_id=message.chat.id
+        pagelist=[]
+        paperlist=[]
+        for i in range(1,11):
+            ur='https://epaper.virakesari.lk/newspaper/Daily/main/{}#page-{}'.format(today,i)
+            pagelist.append(ur)
+        for i,ii in enumerate(pagelist,start=1):
+            options=webdriver.ChromeOptions()
+            options.headless = True
+            driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
+            driver.get(url=ii)
+            soup=BeautifulSoup(driver.page_source,'html')
+            paperpg=soup.find('img',id='pageImage')['src']
+            bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
+    except:
+        bot.reply_to(message,'sorry , maintenance Break' )
 
 ########### telegram bot'''#########################################
 @bot.message_handler(commands=['A'])
