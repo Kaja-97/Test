@@ -15,7 +15,7 @@ import telebot
 from telebot import types
 from dotenv import load_dotenv
 import datetime
-
+import selenium
 config = load_dotenv(".env")
 
 path="chromedriver.exe"
