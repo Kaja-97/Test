@@ -26,47 +26,56 @@ bot = telebot.TeleBot(API_KEY)
 ## paper sending Function
 @bot.message_handler(commands=['Paper'])
 def paper(message):
-    today=datetime.datetime.now().strftime('%Y-%m-%d')
-    chat_id=message.chat.id
-    pagelist=[]
-    paperlist=[]
-    for i in range(1,11):
-
-        path="chromedriver.exe"
-        options=webdriver.ChromeOptions()
-        options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
-        options.add_argument("--headless")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-sh-usage")
-        driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
-    ###############################################################hhhhhhhhh######################
+    try:
+        today=datetime.datetime.now().strftime('%Y-%m-%d')
+        chat_id=message.chat.id
+        user=msg.from_user.first_name
+        for i in range(1,11):
+            path="chromedriver.exe"
+            options=webdriver.ChromeOptions()
+            options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
+            options.add_argument("--headless")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-sh-usage")
+            driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
+        ###############################################################hhhhhhhhh######################
+            ur='https://epaper.virakesari.lk/newspaper/Daily/main/{}#page-{}'.format(today,i)
+    #         pagelist.append(ur)
+            # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
+            driver.get(ur)
+            soup=BeautifulSoup(driver.page_source,'html')
+            paperpg=soup.find('img',id='pageImage')['src']
+            time.sleep(2)
+            bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
+    except Exception:
+        bot.reply_to(message,'Sorry , I can''t Send now, try again later')
         
-    
-        ur='https://epaper.virakesari.lk/newspaper/Daily/main/{}#page-{}'.format(today,i)
-#         pagelist.append(ur)
-        # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
-        driver.get(ur)
-        time.sleep(1)
-        soup=BeautifulSoup(driver.page_source,'html')
-        paperpg=soup.find('img',id='pageImage')['src']
-        time.sleep(1)
-        paperlist.append(paperpg)
-        
-        bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
-
  ### Current Cut Schdl sending Function
-@bot.message_handler()
-def scrap(msg):
-    zz=str(msg.text)
-    scraper(zz)
-    for i in A:
-        bot.reply_to(msg,i)
-    
 @bot.message_handler(commands=['start'])
 def greet(message):
 #     user_first_name = str(message.chat.first_name) 
-    bot.reply_to(message, f"Hey!  \n Welcome 😍 \nPlease type your zone , (ex :- A or W )  \n\n Type /Paper to get Newspaper")
+    bot.reply_to(message, f"Hey!  \n Welcome 😍 \n Please type your zone , (ex :- A  or W)  \n Do you want to read today News paper Type /Paper ")
+    
+@bot.message_handler(regexp='Hello'or'hello')
+def scrap(msg):
+    user=msg.from_user.first_name
+    bot.reply_to(msg,'Hi'+' '+user)
 
+@bot.message_handler(regexp='I love you'or'i love you')
+def scrap(msg):
+    user=msg.from_user.first_name
+    bot.reply_to(msg,'Me too 😍'+' '+user)
+
+@bot.message_handler()
+def scrap(msg):
+    if len(msg.text)==1:
+        zz=str(msg.text)
+        scraper(zz)
+        for i in A:
+            bot.reply_to(msg,i)
+    else:
+        bot.reply_to(msg,'type Your Zone')
+        
 ########### telegram bot'''#########################################
 def scraper(x):
     #######################################################################################
