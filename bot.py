@@ -46,8 +46,10 @@ def paper(message):
 #         pagelist.append(ur)
         # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
         driver.get(ur)
+        time.sleep(1)
         soup=BeautifulSoup(driver.page_source,'html')
         paperpg=soup.find('img',id='pageImage')['src']
+        time.sleep(1)
         paperlist.append(paperpg)
         
         bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
@@ -63,7 +65,7 @@ def scrap(msg):
 @bot.message_handler(commands=['start'])
 def greet(message):
 #     user_first_name = str(message.chat.first_name) 
-    bot.reply_to(message, f"Hey!  \n Welcome 😍 \nPlease type your zone , (ex :- /A )  \n\n Type /Paper to get Newspaper")
+    bot.reply_to(message, f"Hey!  \n Welcome 😍 \nPlease type your zone , (ex :- A or W )  \n\n Type /Paper to get Newspaper")
 
 ########### telegram bot'''#########################################
 def scraper(x):
@@ -111,6 +113,6 @@ def scraper(x):
                 for i in range(len(AA)):
                     B=code_html=code_html + '\n\n Zone:' + str((AA['Zone'].iloc[i])) +' - '+' Time: ' + str((AA['Time'].iloc[i]))
                     A.append(B)
-                    print('XX')
+                    
 
 bot.polling()
