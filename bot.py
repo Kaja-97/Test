@@ -25,7 +25,8 @@ bot = telebot.TeleBot(API_KEY)
 
 ## paper sending Function
 @bot.message_handler(commands=['Paper'])
-    def paper(message):
+def paper(message):
+    
     chat_id=message.chat.id
     user=message.from_user.first_name
     mychat_id=1927939875
