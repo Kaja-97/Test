@@ -26,8 +26,8 @@ bot = telebot.TeleBot(API_KEY)
 ## paper sending Function
 @bot.message_handler(commands=['Paper'])
 def paper(message):
-chat_id=msg.chat.id
-user=msg.from_user.first_name
+chat_id=message.chat.id
+user=message.from_user.first_name
 mychat_id=1927939875
 bot.send_message(mychat_id, 'User'+str(chat_id)+',name '+user)
 today=datetime.datetime.now().strftime('%Y-%m-%d')
@@ -59,8 +59,8 @@ for i in range(1,11):
  ### Current Cut Schdl sending Function
 @bot.message_handler(commands=['start'])
 def greet(message):
-    chat_id=msg.chat.id
-    user=msg.from_user.first_name
+    chat_id=message.chat.id
+    user=message.from_user.first_name
     mychat_id=1927939875
     bot.send_message(mychat_id, 'User'+str(chat_id)+',name '+user)
 
