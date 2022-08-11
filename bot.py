@@ -30,10 +30,11 @@ def paper(message):
     chat_id=message.chat.id
     user=message.from_user.first_name
     mychat_id=1927939875
-    bot.send_message(mychat_id, 'User'+str(chat_id)+',name '+user)
+    bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
+    
     today=datetime.datetime.now().strftime('%Y-%m-%d')
-    chat_id=message.chat.id
-    user=msg.from_user.first_name
+    
+    
     for i in range(1,11):
         try:
             path="chromedriver.exe"
@@ -63,41 +64,41 @@ def greet(message):
     chat_id=message.chat.id
     user=message.from_user.first_name
     mychat_id=1927939875
-    bot.send_message(mychat_id, 'User'+str(chat_id)+',name '+user)
+    bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
 
     bot.reply_to(message, f"Hey!  \n Welcome 😍 \n Please type your zone , (ex :- A  or W)  \n Do you want to read today News paper Type /Paper ")
     
 @bot.message_handler(regexp='Hello'or'hello')
-def scrap(msg):
-    chat_id=msg.chat.id
-    user=msg.from_user.first_name
+def scrap(message):
+    chat_id=message.chat.id
+    user=message.from_user.first_name
     mychat_id=1927939875
-    bot.send_message(mychat_id, 'User'+str(chat_id)+',name '+user)
-    user=msg.from_user.first_name
-    bot.reply_to(msg,'Hi'+' '+user)
+    bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
+    
+    bot.reply_to(message,'Hi'+' '+user)
 
 @bot.message_handler(regexp='I love you'or'i love you')
-def scrap(msg):
-    chat_id=msg.chat.id
-    user=msg.from_user.first_name
+def scrap(message):
+    chat_id=message.chat.id
+    user=message.from_user.first_name
     mychat_id=1927939875
-    bot.send_message(mychat_id, 'User'+str(chat_id)+',name '+user)
-    user=msg.from_user.first_name
-    bot.reply_to(msg,'Me too 😍'+' '+user)
+    bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
+    
+    bot.reply_to(message,'Me too 😍'+' '+user)
 
 @bot.message_handler()
-def scrap(msg):
-    chat_id=msg.chat.id
-    user=msg.from_user.first_name
+def scrap(message):
+    chat_id=message.chat.id
+    user=message.from_user.first_name
     mychat_id=1927939875
-    bot.send_message(mychat_id, 'User'+str(chat_id)+',name '+user)
-    if len(msg.text)==1:
-        zz=str(msg.text)
+    bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
+    if len(message.text)==1:
+        zz=str(message.text)
         scraper(zz)
         for i in A:
-            bot.reply_to(msg,i)
+            bot.reply_to(message,i)
     else:
-        bot.reply_to(msg,'type Your Zone')
+        bot.reply_to(message,'type Your Zone')
         
 ########### telegram bot'''#########################################
 def scraper(x):
