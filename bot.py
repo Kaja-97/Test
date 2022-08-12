@@ -33,7 +33,7 @@ def paper(message):
     mychat_id=1927939875
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
     
-    bot.reply_to(message,user + '  \n Select Here or \n type and send me like this \n /Verrakesari  \n  /Thinakural ')
+    bot.reply_to(message,user + '  \n Select Here or \n type and send me like this \n /Veerakesari  \n  /Thinakural ')
 
 @bot.message_handler(commands=['Veerakesari'])
 def paper(message):
@@ -42,7 +42,7 @@ def paper(message):
     user=message.from_user.first_name
     mychat_id=1927939875
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
-    
+   
     country_time_zone = pytz.timezone('Asia/Kolkata')
     country_time = datetime.now(country_time_zone)
     today=country_time.strftime('%Y-%m-%d')
@@ -58,8 +58,7 @@ def paper(message):
             options.add_argument('--incognito')
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-sh-usage")
-            servicee=Srtvice(os.environ.get("CHROMEDRIVER_PATH"))
-            driver =webdriver.Chrome(servicee,options=options)
+            driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),options=options)
             driver.implicitly_wait(3)
         ###############################################################hhhhhhhhh######################
             ur='https://epaper.virakesari.lk/newspaper/Daily/main/{}#page-{}'.format(today,i)
@@ -88,7 +87,6 @@ def paper(message):
     
     for i in range(1,11):
         try:
-            path="chromedriver.exe"
             options=webdriver.ChromeOptions()
             options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
             options.add_argument("--headless")
@@ -96,9 +94,7 @@ def paper(message):
             options.add_argument('--incognito')
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-sh-usage")
-            servicee=Srtvice(os.environ.get("CHROMEDRIVER_PATH"))
-            driver =webdriver.Chrome(servicee,options=options)
-#             driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),options=options)
+            driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),options=options)
             driver.implicitly_wait(3)
         ###############################################################hhhhhhhhh######################
             
@@ -166,6 +162,16 @@ def scrap(message):
     
     bot.reply_to(message,'Me too 😍'+' '+user)
 
+    
+@bot.message_handler(func=lambda message: True, content_types=['audio', 'photo', 'voice', 'video', 'document', 'location', 'contact', 'sticker'])
+def scrap(message):
+    chat_id=message.chat.id
+    user=message.from_user.first_name
+    mychat_id=1927939875
+    bot.send_message(mychat_id, 'User Id - '+str(chat_id)+'\n name - '+user)
+    
+    bot.reply_to(message,user+'\nThis is not a text, I unable to do ...   ')
+    
 @bot.message_handler()
 def scrap(message):
     chat_id=message.chat.id
@@ -185,8 +191,7 @@ def scrap(message):
         
 ########### telegram bot'''#########################################
 def scraper(x):
-    #######################################################################################
-    path="chromedriver.exe"
+    ######################################################################################
     options=webdriver.ChromeOptions()
     options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
     options.add_argument("--headless")
@@ -194,9 +199,7 @@ def scraper(x):
     options.add_argument('--incognito')
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-sh-usage")
-#     driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
-    servicee=Srtvice(os.environ.get("CHROMEDRIVER_PATH"))
-    driver =webdriver.Chrome(servicee,options=options)
+    driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
     ###############################################################hhhhhhhhh######################
     
     # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver.exe",chrome_options=options)
