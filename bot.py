@@ -176,11 +176,14 @@ def scrap(message):
     if message.text.isdigit() :
         bot.reply_to(message,'type Your Zone (like A or B)')
     elif len(message.text)==1:
-        lttr=message.text.upper()
-        zz=str(lttr)
-        scraper(zz)
-        for i in A:
-            bot.reply_to(message,i)
+        try:
+            lttr=message.text.upper()
+            zz=str(lttr)
+            scraper(zz)
+            for i in A:
+                bot.reply_to(message,i)
+        except Exception:
+            bot.reply_to(message,'Please type Your Zone (like A or B)')
     else:
         bot.reply_to(message,'Please type Your Zone (like A or B)')
         
