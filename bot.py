@@ -79,7 +79,7 @@ def paper(message):
     mychat_id=1927939875
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
     
-    today=datetime.datetime.now().strftime('%Y-%m-%d')
+    
     
     
     for i in range(1,11):
@@ -98,22 +98,22 @@ def paper(message):
             # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
             url='http://www.epaper.thinakkural.lk/yarl-thinakkural/'
             pag=driver.get(url)
-            print('pass')
+            
             pagg=driver.page_source
-            print('pass')
+            
             soup=BeautifulSoup(pagg,'html.parser')
             glink=soup.find('div',id='inner_page_tile')
             ff=glink.find_all_next('a')
-            print('pass')
+            
             for a,i in enumerate(ff,start=0):
                 if a<10:
-                    print('pass')
+                    
                     lnk='http://www.epaper.thinakkural.lk/'+i['href'][2:]
                     #####
                     imga=requests.get(lnk)
                     driver.implicitly_wait(3)
                     imgg=imga.content
-                    print('pass')
+                    
                     bot.send_photo(chat_id, imgg, protect_content=True ,disable_notification=True)
             #         bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
                     #####
@@ -198,7 +198,7 @@ def scraper(x):
             Time.append(time)
             zone=a.find('span',class_='badge border border-light text-light fw-500').getText()
             Zone.append(zone)
-            print(Zone)
+            
         dic={'Zone':Zone,'Time':Time}
 
         if x not in Zone:
