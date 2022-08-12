@@ -206,7 +206,7 @@ def scraper(x):
         else:
             table=pd.DataFrame(dic)
             AA=table[table['Zone']==x]
-            code_html='*Title of the message*' 
+            code_html='*👇👇👇        👇👇👇*' 
             A=[]
             if AA.empty == False:
                 for i in range(len(AA)):
