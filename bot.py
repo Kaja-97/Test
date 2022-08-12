@@ -154,16 +154,16 @@ def scrap(message):
     user=message.from_user.first_name
     mychat_id=1927939875
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
-    if msg.text.isdigit() :
-        bot.reply_to(msg,'type Your Zone (like A or B)')
-    elif len(msg.text)==1:
-        lttr=msg.text.upper()
+    if message.text.isdigit() :
+        bot.reply_to(message,'type Your Zone (like A or B)')
+    elif len(message.text)==1:
+        lttr=message.text.upper()
         zz=str(lttr)
         scraper(zz)
         for i in A:
-            bot.reply_to(msg,i)
+            bot.reply_to(message,i)
     else:
-        bot.reply_to(msg,'Please type Your Zone (like A or B)')
+        bot.reply_to(message,'Please type Your Zone (like A or B)')
         
 ########### telegram bot'''#########################################
 def scraper(x):
