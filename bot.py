@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 import selenium 
 from datetime import datetime
 import pytz
+from selenium.webdriver.chrome.service import Service
 
 config = load_dotenv(".env")
 
@@ -57,7 +58,8 @@ def paper(message):
             options.add_argument('--incognito')
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-sh-usage")
-            driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),options=options)
+            servicee=Srtvice(os.environ.get("CHROMEDRIVER_PATH"))
+            driver =webdriver.Chrome(servicee,options=options)
             driver.implicitly_wait(3)
         ###############################################################hhhhhhhhh######################
             ur='https://epaper.virakesari.lk/newspaper/Daily/main/{}#page-{}'.format(today,i)
@@ -94,7 +96,9 @@ def paper(message):
             options.add_argument('--incognito')
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-sh-usage")
-            driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),options=options)
+            servicee=Srtvice(os.environ.get("CHROMEDRIVER_PATH"))
+            driver =webdriver.Chrome(servicee,options=options)
+#             driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),options=options)
             driver.implicitly_wait(3)
         ###############################################################hhhhhhhhh######################
             
@@ -190,7 +194,9 @@ def scraper(x):
     options.add_argument('--incognito')
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-sh-usage")
-    driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
+#     driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
+    servicee=Srtvice(os.environ.get("CHROMEDRIVER_PATH"))
+    driver =webdriver.Chrome(servicee,options=options)
     ###############################################################hhhhhhhhh######################
     
     # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver.exe",chrome_options=options)
