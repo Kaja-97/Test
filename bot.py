@@ -14,7 +14,8 @@ import telebot
 from telebot import types
 from dotenv import load_dotenv
 import selenium 
-import datetime
+from datetime import datetime
+import pytz
 
 config = load_dotenv(".env")
 
@@ -26,13 +27,24 @@ bot = telebot.TeleBot(API_KEY)
 ## paper sending Function
 @bot.message_handler(commands=['Paper'])
 def paper(message):
+    chat_id=message.chat.id
+    user=message.from_user.first_name
+    mychat_id=1927939875
+    bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
+    
+    bot.reply_to(message,'Select Here or \n type and send me like this \n /Verrakesari  \n  /Thinakural ')
+
+@bot.message_handler(commands=['Verrakesari'])
+def paper(message):
     
     chat_id=message.chat.id
     user=message.from_user.first_name
     mychat_id=1927939875
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
     
-    today=datetime.datetime.now().strftime('%Y-%m-%d')
+    country_time_zone = pytz.timezone('Asia/Kolkata')
+    country_time = datetime.now(country_time_zone)
+    today=country_time.strftime('%Y-%m-%d')
     
     
     for i in range(1,11):
@@ -55,6 +67,56 @@ def paper(message):
             paperpg=soup.find('img',id='pageImage')['src']
             driver.implicitly_wait(3)
             bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
+        except Exception:
+            bot.reply_to(message,'Sorry , I can''t Send now, try again later')
+
+            
+@bot.message_handler(commands=['Thinakural'])
+def paper(message):
+    
+    chat_id=message.chat.id
+    user=message.from_user.first_name
+    mychat_id=1927939875
+    bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
+    
+    today=datetime.datetime.now().strftime('%Y-%m-%d')
+    
+    
+    for i in range(1,11):
+        try:
+            path="chromedriver.exe"
+            options=webdriver.ChromeOptions()
+            options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
+            options.add_argument("--headless")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-sh-usage")
+            driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
+            driver.implicitly_wait(3)
+        ###############################################################hhhhhhhhh######################
+            
+    #         pagelist.append(ur)
+            # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
+            url='http://www.epaper.thinakkural.lk/yarl-thinakkural/'
+            pag=driver.get(url)
+            print('pass')
+            pagg=driver.page_source
+            print('pass')
+            soup=BeautifulSoup(pagg,'html.parser')
+            glink=soup.find('div',id='inner_page_tile')
+            ff=glink.find_all_next('a')
+            print('pass')
+            for a,i in enumerate(ff,start=0):
+                if a<10:
+                    print('pass')
+                    lnk='http://www.epaper.thinakkural.lk/'+i['href'][2:]
+                    #####
+                    imga=requests.get(lnk)
+                    driver.implicitly_wait(3)
+                    imgg=imga.content
+                    print('pass')
+                    bot.send_photo(chat_id, imgg, protect_content=True ,disable_notification=True)
+            #         bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
+                    #####
         except Exception:
             bot.reply_to(message,'Sorry , I can''t Send now, try again later')
 
@@ -92,13 +154,16 @@ def scrap(message):
     user=message.from_user.first_name
     mychat_id=1927939875
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
-    if len(message.text)==1:
-        zz=str(message.text)
+    if msg.text.isdigit() :
+        bot.reply_to(msg,'type Your Zone (like A or B)')
+    elif len(msg.text)==1:
+        lttr=msg.text.upper()
+        zz=str(lttr)
         scraper(zz)
         for i in A:
-            bot.reply_to(message,i)
+            bot.reply_to(msg,i)
     else:
-        bot.reply_to(message,'type Your Zone')
+        bot.reply_to(msg,'Please type Your Zone (like A or B)')
         
 ########### telegram bot'''#########################################
 def scraper(x):
