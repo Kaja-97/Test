@@ -32,9 +32,9 @@ def paper(message):
     mychat_id=1927939875
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
     
-    bot.reply_to(message,'Select Here or \n type and send me like this \n /Verrakesari  \n  /Thinakural ')
+    bot.reply_to(message,user'  \n Select Here or \n type and send me like this \n /Verrakesari  \n  /Thinakural ')
 
-@bot.message_handler(commands=['Verrakesari'])
+@bot.message_handler(commands=['Veerakesari'])
 def paper(message):
     
     chat_id=message.chat.id
@@ -53,9 +53,11 @@ def paper(message):
             options=webdriver.ChromeOptions()
             options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
             options.add_argument("--headless")
+            options.add_argument('--ignore-certificate-errors')
+            options.add_argument('--incognito')
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-sh-usage")
-            driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
+            driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),options=options)
             driver.implicitly_wait(3)
         ###############################################################hhhhhhhhh######################
             ur='https://epaper.virakesari.lk/newspaper/Daily/main/{}#page-{}'.format(today,i)
@@ -68,7 +70,7 @@ def paper(message):
             driver.implicitly_wait(3)
             bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
         except Exception:
-            bot.reply_to(message,'Sorry , I can''t Send now, try again later')
+            bot.reply_to(message,user+'  Sorry , I can''t Send now, try again later')
 
             
 @bot.message_handler(commands=['Thinakural'])
@@ -88,9 +90,11 @@ def paper(message):
             options=webdriver.ChromeOptions()
             options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
             options.add_argument("--headless")
+            options.add_argument('--ignore-certificate-errors')
+            options.add_argument('--incognito')
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-sh-usage")
-            driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
+            driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),options=options)
             driver.implicitly_wait(3)
         ###############################################################hhhhhhhhh######################
             
@@ -118,7 +122,7 @@ def paper(message):
             #         bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
                     #####
         except Exception:
-            bot.reply_to(message,'Sorry , I can''t Send now, try again later')
+            bot.reply_to(message,user + ' Sorry , I can''t Send now, try again later')
 
  ### Current Cut Schdl sending Function
 @bot.message_handler(commands=['start'])
@@ -139,6 +143,16 @@ def scrap(message):
     
     bot.reply_to(message,'Hi'+' '+user)
 
+    
+@bot.message_handler(regexp='Hi'or'hi')
+def scrap(message):
+    chat_id=message.chat.id
+    user=message.from_user.first_name
+    mychat_id=1927939875
+    bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
+    
+    bot.reply_to(message,'Hi'+' '+user)
+    
 @bot.message_handler(regexp='I love you'or'i love you')
 def scrap(message):
     chat_id=message.chat.id
@@ -172,6 +186,8 @@ def scraper(x):
     options=webdriver.ChromeOptions()
     options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
     options.add_argument("--headless")
+    options.add_argument('--ignore-certificate-errors')
+    options.add_argument('--incognito')
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-sh-usage")
     driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
