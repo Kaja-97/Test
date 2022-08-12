@@ -58,7 +58,7 @@ def paper(message):
             options.add_argument('--incognito')
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-sh-usage")
-            driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),options=options)
+            driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
             driver.implicitly_wait(3)
         ###############################################################hhhhhhhhh######################
             ur='https://epaper.virakesari.lk/newspaper/Daily/main/{}#page-{}'.format(today,i)
@@ -82,47 +82,42 @@ def paper(message):
     mychat_id=1927939875
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
     
-    
-    
-    
-    for i in range(1,11):
-        try:
-            options=webdriver.ChromeOptions()
-            options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
-            options.add_argument("--headless")
-            options.add_argument('--ignore-certificate-errors')
-            options.add_argument('--incognito')
-            options.add_argument("--no-sandbox")
-            options.add_argument("--disable-dev-sh-usage")
-            driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),options=options)
-            driver.implicitly_wait(3)
-        ###############################################################hhhhhhhhh######################
-            
-    #         pagelist.append(ur)
-            # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
-            url='http://www.epaper.thinakkural.lk/yarl-thinakkural/'
-            pag=driver.get(url)
-            
-#             pagg=driver.page_source
-            soup=BeautifulSoup(driver.page_source,'html')
-#             soup=BeautifulSoup(pagg,'html.parser')
-            glink=soup.find('div',id='inner_page_tile')
-            ff=glink.find_all_next('a')
-            
-            for a,i in enumerate(ff,start=0):
-                if a<10:
-                    
-                    lnk='http://www.epaper.thinakkural.lk/'+i['href'][2:]
-                    #####
-                    imga=requests.get(lnk)
-                    driver.implicitly_wait(3)
-                    imgg=imga.content
-                    
-                    bot.send_photo(chat_id, imgg, protect_content=True ,disable_notification=True)
-            #         bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
-                    #####
-        except Exception:
-            bot.reply_to(message,user + ' Sorry , I can''t Send now, try again later')
+#     for i in range(1,11):
+#     try:
+    options=webdriver.ChromeOptions()
+    options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
+    options.add_argument("--headless")
+    options.add_argument('--ignore-certificate-errors')
+    options.add_argument('--incognito')
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-sh-usage")
+    driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
+    driver.implicitly_wait(3)
+###############################################################hhhhhhhhh######################
+#         pagelist.append(ur)
+    # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
+    url='http://www.epaper.thinakkural.lk/yarl-thinakkural/'
+    pag=driver.get(url)
+    driver.implicitly_wait(3)
+    soup=BeautifulSoup(driver.page_source,'html')
+    glink=soup.find('div',id='inner_page_tile')
+    ff=glink.find_all_next('a')
+    try:
+        for a,i in enumerate(ff,start=0):
+            if a<10:
+
+                lnk='http://www.epaper.thinakkural.lk/'+i['href'][2:]
+                #####
+                imga=requests.get(lnk)
+                driver.implicitly_wait(5)
+                imgg=imga.content
+
+                bot.send_photo(chat_id, imgg, protect_content=True ,disable_notification=True)
+                driver.implicitly_wait(3)
+        #         bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
+                #####
+    except Exception:
+        bot.reply_to(message,user + ' Sorry , I can''t Send now, try again later')
 
  ### Current Cut Schdl sending Function
 @bot.message_handler(commands=['start'])
@@ -163,14 +158,14 @@ def scrap(message):
     bot.reply_to(message,'Me too 😍'+' '+user)
 
     
-@bot.message_handler(func=lambda message: True, content_types=['audio', 'photo', 'voice', 'video', 'document', 'location', 'contact', 'sticker'])
+@bot.message_handler(func=lambda message:False, content_types=['text'])
 def scrap(message):
     chat_id=message.chat.id
     user=message.from_user.first_name
     mychat_id=1927939875
     bot.send_message(mychat_id, 'User Id - '+str(chat_id)+'\n name - '+user)
     
-    bot.reply_to(message,user+'\nThis is not a text, I unable to do ...   ')
+    bot.reply_to(message,user+"\nI don't understand, try with /start   ")
     
 @bot.message_handler()
 def scrap(message):
