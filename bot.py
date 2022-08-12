@@ -32,7 +32,7 @@ def paper(message):
     mychat_id=1927939875
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
     
-    bot.reply_to(message,user'  \n Select Here or \n type and send me like this \n /Verrakesari  \n  /Thinakural ')
+    bot.reply_to(message,user + '  \n Select Here or \n type and send me like this \n /Verrakesari  \n  /Thinakural ')
 
 @bot.message_handler(commands=['Veerakesari'])
 def paper(message):
