@@ -81,9 +81,7 @@ def paper(message):
     user=message.from_user.first_name
     mychat_id=1927939875
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
-    
-#     for i in range(1,11):
-#     try:
+
     options=webdriver.ChromeOptions()
     options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
     options.add_argument("--headless")
@@ -102,8 +100,8 @@ def paper(message):
     soup=BeautifulSoup(driver.page_source,'html')
     glink=soup.find('div',id='inner_page_tile')
     ff=glink.find_all_next('a')
-    try:
-        for a,i in enumerate(ff,start=0):
+    for a,i in enumerate(ff,start=0):
+        try:
             if a<10:
 
                 lnk='http://www.epaper.thinakkural.lk/'+i['href'][2:]
@@ -114,10 +112,12 @@ def paper(message):
 
                 bot.send_photo(chat_id, imgg, protect_content=True ,disable_notification=True)
                 driver.implicitly_wait(3)
-        #         bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
-                #####
-    except Exception:
-        bot.reply_to(message,user + ' Sorry , I can''t Send now, try again later')
+        except Exception:
+            bot.reply_to(message,user + ' Sorry , I can''t Send now, try again later')
+    #         bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
+            #####
+            
+
 
  ### Current Cut Schdl sending Function
 @bot.message_handler(commands=['start'])
@@ -158,7 +158,7 @@ def scrap(message):
     bot.reply_to(message,'Me too 😍'+' '+user)
 
     
-@bot.message_handler(func=lambda message:False, content_types=['text'])
+@bot.message_handler(func=lambda message:False, content_types=['audio', 'photo', 'voice', 'video', 'document','location', 'contact', 'sticker'])
 def scrap(message):
     chat_id=message.chat.id
     user=message.from_user.first_name
