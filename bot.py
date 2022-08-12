@@ -99,9 +99,9 @@ def paper(message):
             url='http://www.epaper.thinakkural.lk/yarl-thinakkural/'
             pag=driver.get(url)
             
-            pagg=driver.page_source
-            
-            soup=BeautifulSoup(pagg,'html.parser')
+#             pagg=driver.page_source
+            soup=BeautifulSoup(driver.page_source,'html')
+#             soup=BeautifulSoup(pagg,'html.parser')
             glink=soup.find('div',id='inner_page_tile')
             ff=glink.find_all_next('a')
             
