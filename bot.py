@@ -94,9 +94,9 @@ def paper(message):
 ###############################################################hhhhhhhhh######################
 #         pagelist.append(ur)
     # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
-    url='http://www.epaper.thinakkural.lk/yarl-thinakkural/'
-    pag=driver.get(url)
-    driver.implicitly_wait(3)
+    ur='http://www.epaper.thinakkural.lk/yarl-thinakkural/'
+    pag=driver.get(ur)
+    driver.implicitly_wait(7)
     soup=BeautifulSoup(driver.page_source,'html')
     glink=soup.find('div',id='inner_page_tile')
     ff=glink.find_all_next('a')
@@ -225,7 +225,7 @@ def scraper(x):
         dic={'Zone':Zone,'Time':Time}
 
         if x not in Zone:
-            A='Please Type Correct Zone'
+            A=['Please Type Correct Zone']
         else:
             table=pd.DataFrame(dic)
             AA=table[table['Zone']==x]
