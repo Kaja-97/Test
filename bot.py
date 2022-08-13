@@ -33,11 +33,10 @@ def paper(message):
     mychat_id=1927939875
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
     
-    bot.reply_to(message,user + '  \n Select Here or \n type and send me like this \n /Veerakesari  \n  /Thinakural ')
+    bot.reply_to(message,user + '  \n Select Here or \n type and send me like this \n /Veerakesari  \n ')
 
 @bot.message_handler(commands=['Veerakesari'])
 def Veerakesari(message):
-    
     chat_id=message.chat.id
     user=message.from_user.first_name
     mychat_id=1927939875
@@ -81,6 +80,7 @@ def thinakural(message):
     mychat_id=1927939875
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
 
+    path="chromedriver.exe"
     options=webdriver.ChromeOptions()
     options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
     options.add_argument("--headless")
@@ -91,12 +91,12 @@ def thinakural(message):
     driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
     driver.implicitly_wait(3)
 ###############################################################hhhhhhhhh######################
-#         pagelist.append(ur)
-    # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
-    ur='http://www.epaper.thinakkural.lk/yarl-thinakkural/'
-    pag=driver.get(ur)
-    driver.implicitly_wait(3)
-    soup=BeautifulSoup(driver.page_source,'html')
+    url='http://www.epaper.thinakkural.lk/yarl-thinakkural/'
+    pag=driver.get(url)
+    driver.implicitly_wait(5)
+    pagg=driver.page_source
+    driver.implicitly_wait(5)
+    soup=BeautifulSoup(pagg,'html')
     glink=soup.find('div',id='inner_page_tile')
     ff=glink.find_all_next('a')
     for a,i in enumerate(ff,start=0):
