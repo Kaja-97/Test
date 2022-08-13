@@ -36,7 +36,7 @@ def paper(message):
     bot.reply_to(message,user + '  \n Select Here or \n type and send me like this \n /Veerakesari  \n  /Thinakural ')
 
 @bot.message_handler(commands=['Veerakesari'])
-def paper(message):
+def Veerakesari(message):
     
     chat_id=message.chat.id
     user=message.from_user.first_name
@@ -75,8 +75,7 @@ def paper(message):
 
             
 @bot.message_handler(commands=['Thinakural'])
-def paper(message):
-    
+def thinakural(message):
     chat_id=message.chat.id
     user=message.from_user.first_name
     mychat_id=1927939875
@@ -96,15 +95,14 @@ def paper(message):
     # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
     ur='http://www.epaper.thinakkural.lk/yarl-thinakkural/'
     pag=driver.get(ur)
-    driver.implicitly_wait(7)
+    driver.implicitly_wait(3)
     soup=BeautifulSoup(driver.page_source,'html')
     glink=soup.find('div',id='inner_page_tile')
     ff=glink.find_all_next('a')
     for a,i in enumerate(ff,start=0):
         try:
             if a<10:
-
-                lnk='http://www.epaper.thinakkural.lk/'+i['href'][2:]
+                lnk=str('http://www.epaper.thinakkural.lk'+i['href'][2:])
                 #####
                 imga=requests.get(lnk)
                 driver.implicitly_wait(5)
