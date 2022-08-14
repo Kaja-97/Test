@@ -30,7 +30,7 @@ bot = telebot.TeleBot(API_KEY)
 def paper(message):
     chat_id=message.chat.id
     user=message.from_user.first_name
-    mychat_id=1927939875
+    mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
     
     bot.reply_to(message,user + '  \n Select Here or \n type and send me like this \n /Veerakesari  \n ')
@@ -39,7 +39,7 @@ def paper(message):
 def Veerakesari(message):
     chat_id=message.chat.id
     user=message.from_user.first_name
-    mychat_id=1927939875
+    mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
    
     country_time_zone = pytz.timezone('Asia/Kolkata')
@@ -78,7 +78,7 @@ def Veerakesari(message):
 def thinakural(message):
     chat_id=message.chat.id
     user=message.from_user.first_name
-    mychat_id=1927939875
+    mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
 
     path="chromedriver.exe"
@@ -123,7 +123,7 @@ def thinakural(message):
 def greet(message):
     chat_id=message.chat.id
     user=message.from_user.first_name
-    mychat_id=1927939875
+    mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
 
     bot.reply_to(message, f"Hey!  \n Welcome 😍 \n Please type your zone , (ex :- A  or W)  \n Do you want to read today News paper Type /Paper ")
@@ -132,7 +132,7 @@ def greet(message):
 def scrap(message):
     chat_id=message.chat.id
     user=message.from_user.first_name
-    mychat_id=1927939875
+    mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
     
     bot.reply_to(message,'Hi'+' '+user)
@@ -142,7 +142,7 @@ def scrap(message):
 def scrap(message):
     chat_id=message.chat.id
     user=message.from_user.first_name
-    mychat_id=1927939875
+    mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
     
     bot.reply_to(message,'Hi'+' '+user)
@@ -151,7 +151,7 @@ def scrap(message):
 def scrap(message):
     chat_id=message.chat.id
     user=message.from_user.first_name
-    mychat_id=1927939875
+    mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
     
     bot.reply_to(message,'Me too 😍'+' '+user)
@@ -161,7 +161,7 @@ def scrap(message):
 def scrap(message):
     chat_id=message.chat.id
     user=message.from_user.first_name
-    mychat_id=1927939875
+    mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User Id - '+str(chat_id)+'\n name - '+user)
     
     bot.reply_to(message,user+"\nI don't understand, try with /start   ")
@@ -170,7 +170,7 @@ def scrap(message):
 def scrap(message):
     chat_id=message.chat.id
     user=message.from_user.first_name
-    mychat_id=1927939875
+    mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
     if message.text.isdigit() :
         bot.reply_to(message,'type Your Zone (like A or B)')
