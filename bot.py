@@ -45,33 +45,34 @@ def Veerakesari(message):
     country_time_zone = pytz.timezone('Asia/Kolkata')
     country_time = datetime.now(country_time_zone)
     today=country_time.strftime('%Y-%m-%d')
-    
-    
-    for i in range(1,11):
-        try:
-            path="chromedriver.exe"
-            options=webdriver.ChromeOptions()
-            options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
-            options.add_argument("--headless")
-            options.add_argument('--ignore-certificate-errors')
-            options.add_argument('--incognito')
-            options.add_argument("--no-sandbox")
-            options.add_argument("--disable-dev-sh-usage")
-            driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
-            driver.implicitly_wait(3)
-        ###############################################################hhhhhhhhh######################
-            ur='https://epaper.virakesari.lk/newspaper/Daily/main/{}#page-{}'.format(today,i)
-    #         pagelist.append(ur)
-            # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
-            driver.get(ur)
-            driver.implicitly_wait(5)
-            soup=BeautifulSoup(driver.page_source,'html')
-            paperpg=soup.find('img',id='pageImage')['src']
-            driver.implicitly_wait(3)
-            bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
-        except Exception:
-            bot.reply_to(message,user+'  Sorry , I can''t Send now, try again later')
-
+    Dayname=country_time.strftime('%A')
+    if Dayname!='Sunday':
+        for i in range(1,11):
+            try:
+                path="chromedriver.exe"
+                options=webdriver.ChromeOptions()
+                options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
+                options.add_argument("--headless")
+                options.add_argument('--ignore-certificate-errors')
+                options.add_argument('--incognito')
+                options.add_argument("--no-sandbox")
+                options.add_argument("--disable-dev-sh-usage")
+                driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
+                driver.implicitly_wait(3)
+            ###############################################################hhhhhhhhh######################
+                ur='https://epaper.virakesari.lk/newspaper/Daily/main/{}#page-{}'.format(today,i)
+        #         pagelist.append(ur)
+                # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
+                driver.get(ur)
+                driver.implicitly_wait(5)
+                soup=BeautifulSoup(driver.page_source,'html')
+                paperpg=soup.find('img',id='pageImage')['src']
+                driver.implicitly_wait(3)
+                bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
+            except Exception:
+                bot.reply_to(message,user+'  Sorry , I can''t Send now, try again later')
+    else:
+        bot.reply_to(message,user+'  Sorry , Sunday Not available')
             
 @bot.message_handler(commands=['Thinakural'])
 def thinakural(message):
