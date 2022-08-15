@@ -40,8 +40,8 @@ def paper(message):
     country_time = datetime.now(country_time_zone)
     today=country_time.strftime('%Y-%m-%d %H-%M-%S')
     Dayname=country_time.strftime('%A %T')
-    
-    bot.reply_to(message,user + ' Date and time'+today '\nDayname '+Dayname)
+    bot.reply_to(message,Dayname )
+    bot.reply_to(message,today )
     
 @bot.message_handler(commands=['Veerakesari'])
 def Veerakesari(message):
