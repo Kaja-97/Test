@@ -34,7 +34,15 @@ def paper(message):
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
     
     bot.reply_to(message,user + '  \n Select Here or \n type and send me like this \n /Veerakesari  \n ')
-
+@bot.message_handler(commands=['TT'])
+def paper(message):
+    country_time_zone = pytz.timezone('Asia/Kolkata')
+    country_time = datetime.now(country_time_zone)
+    today=country_time.strftime('%Y-%m-%d %H-%M-%S')
+    Dayname=country_time.strftime('%A %T')
+    
+    bot.reply_to(message,user + ' Date and time'+today '\nDayname '+Dayname)
+    
 @bot.message_handler(commands=['Veerakesari'])
 def Veerakesari(message):
     chat_id=message.chat.id
