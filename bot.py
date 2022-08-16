@@ -28,7 +28,7 @@ bot = telebot.TeleBot(API_KEY)
 ## paper sending Function
 @bot.message_handler(commands=['Paper'])
 def paper(message):
-    chat_id=message.chat.id
+    chat_id=message.from_user.id
     user=message.from_user.first_name
     mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
@@ -45,7 +45,7 @@ def paper(message):
     
 @bot.message_handler(commands=['Veerakesari'])
 def Veerakesari(message):
-    chat_id=message.chat.id
+    chat_id=message.from_user.id
     user=message.from_user.first_name
     mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
@@ -129,16 +129,26 @@ def thinakural(message):
  ### Current Cut Schdl sending Function
 @bot.message_handler(commands=['start'])
 def greet(message):
+    userID=message.from_user.id
+    try:
+        userFIRSTNAME=message.from_user.first_name
+    except:
+        userFIRSTNAME='nan'
+    try:
+        userLASTNAME=message.from_user.last_name
+    except:
+        userLASTNAME='nan'
+    userUSERNAME=message.from_user.username
     chat_id=message.chat.id
-    user=message.from_user.first_name
+   
     mychat_id=os.getenv('MY_CHAT_ID')
-    bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
+    bot.send_message(mychat_id, 'User name -'+str(userUSERNAME)+'\n First Name -'+userFIRSTNAME'\n Last Name -'+userLASTNAME'\n User Id -'+userID)
 
     bot.reply_to(message, f"Hey!  \n Welcome 😍 \n Please type your zone , (ex :- A  or W)  \n Do you want to read today News paper Type /Paper ")
     
 @bot.message_handler(regexp='Hello'or'hello')
 def scrap(message):
-    chat_id=message.chat.id
+    chat_id=message.from_user.id
     user=message.from_user.first_name
     mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
@@ -148,7 +158,7 @@ def scrap(message):
     
 @bot.message_handler(regexp='Hi'or'hi')
 def scrap(message):
-    chat_id=message.chat.id
+    chat_id=message.from_user.id
     user=message.from_user.first_name
     mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
@@ -157,7 +167,7 @@ def scrap(message):
     
 @bot.message_handler(regexp='I love you'or'i love you')
 def scrap(message):
-    chat_id=message.chat.id
+    chat_id=message.from_user.id
     user=message.from_user.first_name
     mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
@@ -167,7 +177,7 @@ def scrap(message):
     
 @bot.message_handler(func=lambda message:False, content_types=['audio', 'photo', 'voice', 'video', 'document','location', 'contact', 'sticker'])
 def scrap(message):
-    chat_id=message.chat.id
+    chat_id=message.from_user.id
     user=message.from_user.first_name
     mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User Id - '+str(chat_id)+'\n name - '+user)
@@ -176,7 +186,7 @@ def scrap(message):
     
 @bot.message_handler()
 def scrap(message):
-    chat_id=message.chat.id
+    chat_id=message.from_user.id
     user=message.from_user.first_name
     mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
