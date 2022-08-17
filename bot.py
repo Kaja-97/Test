@@ -5,6 +5,7 @@
 from telebot import types
 from selenium.webdriver.common.keys import Keys
 import platform
+import threading
 #
 from bs4 import BeautifulSoup
 import requests
@@ -20,6 +21,7 @@ import selenium
 from datetime import datetime
 import pytz
 from selenium.webdriver.chrome.service import Service
+
 
 config = load_dotenv(".env")
 
@@ -346,11 +348,17 @@ def Uni_crap():
             bot.send_message(1927939875,name_sub+'\n '+mess.replace('Locked','.'))
         bot.send_message(1927939875,'Uni Function ended from fun ')
        
-# while True:
-#     Uni_crap()
-#     bot.send_message(1927939875,'Uni Function ended from while ')
-#     time.sleep(60*1)
+def allfun():
+    while True:
+        fun()
+        bot.send_message(1927939875,'Uni Function ended ')
+        time.sleep(60*1)
 
+##############################################################################
+
+
+thred=threading.Thread(target=allfun)
+thred.start()
 
                 
                 
