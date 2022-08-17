@@ -318,6 +318,11 @@ def Uni_crap():
 
     dict={'Course Code':Course_Coude,'Subject Name':subject,'subject':subject_url,'Announcement':anounce_url}  
 
+country_time_zone = pytz.timezone('Asia/Kolkata')
+country_time = datetime.now(country_time_zone)
+todayD=country_time.strftime('%Y-%m-%d')
+todayT=country_time.strftime('%H-%M-%S')
+
     print('for loop')
     for i,an in enumerate(anounce_url, start=0):
         driver.get(an)
@@ -340,7 +345,7 @@ def Uni_crap():
         if post_date==todayD:
             bot.send_message(1927939875,name_sub+'\n '+mess.replace('Locked','.'))
         bot.send_message(1927939875,'Uni Function ended from fun ')
-        
+       
 while True:
     Uni_crap()
     bot.send_message(1927939875,'Uni Function ended from while ')
