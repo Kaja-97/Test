@@ -268,8 +268,8 @@ def Uni_crap():
     todayD=country_time.strftime('%Y-%m-%d')
     todayT=country_time.strftime('%H-%M-%S')
     url1='https://learnousl.ou.ac.lk/login/index.php'
-    username='s18001008'
-    password='971063114V'
+    username=os.getenv('USER_NAME')
+    password=os.getenv('PASSWORDS')
     subject_url=[]
     subject=[]
     anounce_url=[]
@@ -347,18 +347,18 @@ def Uni_crap():
         dsa=df['Started by'][0].split()[-3:]
         a=dsa[0]+dsa[1]+dsa[2]
         post_date=pd.to_datetime(a).strftime('%Y-%m-%d')
-
-#         if post_date==todayD:
-        bot.send_message(1927939875,name_sub+'\n '+mess.replace('Locked','.'))
-        bot.send_message(1927939875,'Uni_scrap fun end')
+        mychat_id=os.getenv('MY_CHAT_ID')
+        if post_date==todayD:
+            bot.send_message(mychat_id,name_sub+'\n '+mess.replace('Locked','.'))
+        bot.send_message(mychat_id,'Uni_scrap fun end')
        
 def allfun():
     while True:
         Uni_crap()
-        
-        bot.send_message(1927939875,'Uni Function thread ended ')
+        mychat_id=os.getenv('MY_CHAT_ID')
+        bot.send_message(mychat_id,'Uni Function thread ended ')
         print('thread sleep')
-        time.sleep(60*1)
+        time.sleep(60*60*6)
 
 ##############################################################################
 
@@ -366,7 +366,8 @@ def allfun():
 @bot.message_handler(regexp='Uni')
 def scrap(message):
     Uni_crap()
-    bot.send_message(1927939875,'start fun sep ')
+    mychat_id=os.getenv('MY_CHAT_ID')
+    bot.send_message(mychat_id,'start fun sep ')
     
 thred=threading.Thread(target=allfun)
 thred.start()
