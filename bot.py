@@ -205,6 +205,7 @@ def scrap(message):
         userLASTNAME='nan'
     userUSERNAME=message.from_user.username
     chat_id=message.chat.id
+    mychat_id=os.getenv('MY_CHAT_ID')
     bot.send_message(mychat_id, f'User Name- {userUSERNAME}\n First Name -{userFIRSTNAME}\n Last Name -{userLASTNAME}\n User Id -{userID}')
     
     mychat_id=os.getenv('MY_CHAT_ID')
