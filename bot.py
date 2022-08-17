@@ -2,7 +2,10 @@
 # coding: utf-8
 
 # In[2]:
-
+from telebot import types
+from selenium.webdriver.common.keys import Keys
+import platform
+#
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
@@ -256,5 +259,95 @@ def scraper(x):
                     B=code_html=code_html + '\n\n Zone:' + str((AA['Zone'].iloc[i])) +' - '+' Time: ' + str((AA['Time'].iloc[i]))
                 A=[B]
                 
+def Uni_crap():
+    
+    url1='https://learnousl.ou.ac.lk/login/index.php'
+    username='s18001008'
+    password='971063114V'
+    subject_url=[]
+    subject=[]
+    anounce_url=[]
+    Course_Coude=[]
+    # def login():
+    
+    options=webdriver.ChromeOptions()
+    options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
+    options.add_argument("--headless")
+    options.add_argument('--ignore-certificate-errors')
+    options.add_argument('--incognito')
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-sh-usage")
+    driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
+    driver.implicitly_wait(3)
+    driver.get(url=url1)
+    ### login() .
+    driver.find_element('id','username').clear()
+    driver.find_element('id','username').send_keys(username)
+    driver.find_element('id','password').clear()
+    driver.find_element('id','password').send_keys(password)
+    driver.find_element('id','loginbtn').click()
+    driver.get('https://learnousl.ou.ac.lk/my/')
+    global page
+    page=driver.page_source
+    #return page
+    soup=BeautifulSoup(page,'html')
+    course=soup.find_all('li',class_='type_course depth_3 contains_branch')
+    course=course[1:]
+    # get all subject's Url in subject_url list
+    for sub in course:
+        s=sub.find('p').a['href']
+        subject_url.append(s)
 
+    for an in subject_url:
+        url=an
+        global page1
+        driver.get(url)
+        page1=driver.page_source
+        soup1=BeautifulSoup(page1,'html.parser')
+        sub_name=soup1.find('header').h1.text
+        CCode=sub_name.split(' ')[0]
+        Course_Coude.append(CCode)
+        Name=sub_name[8:]
+        subject.append(Name)
+        try:
+            an=soup1.find('li',{'id':'section-1'}).find('li').find_next('li').find('a',class_='aalink')['href']  #.find('a',class_='aalink')['href']#.find('div',class_='mod-indent-outer w-100').find('a',class_='aalink')['href']  #activityinstance
+            #print(an)
+            anounce_url.append(an)
+        except Exception :
+            print('link not found ,need to change code')
+
+    dict={'Course Code':Course_Coude,'Subject Name':subject,'subject':subject_url,'Announcement':anounce_url}  
+
+    print('for loop')
+    for i,an in enumerate(anounce_url, start=0):
+        driver.get(an)
+        ll=driver.page_source
+        name_sub=Course_Coude[i]
+        try:
+            df=pd.read_html(ll)[1].head(2)
+        except:
+            df=pd.read_html(ll)[0].head(2)
+        F=str(list(df.loc[0]))
+        F1=list(df.loc[0])
+        mess=F1[1]
+        global UNI
+        SS=str(str(name_sub)+' '+F)
+        #date check
+        dsa=df['Started by'][0].split()[-3:]
+        a=dsa[0]+dsa[1]+dsa[2]
+        post_date=pd.to_datetime(a).strftime('%Y-%m-%d')
+
+        if post_date==todayD:
+            bot.send_message(1927939875,name_sub+'\n '+mess.replace('Locked','.'))
+        bot.send_message(1927939875,'Uni Function ended from fun ')
+        
+while True:
+    Uni_crap()
+    bot.send_message(1927939875,'Uni Function ended from while ')
+    time.sleep(60*1)
+
+
+                
+                
+                
 bot.polling()
