@@ -105,8 +105,8 @@ def thinakural(message):
     driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
     driver.implicitly_wait(3)
 ###############################################################hhhhhhhhh######################
-    url='http://www.epaper.thinakkural.lk/yarl-thinakkural/'
-    pag=driver.get(url)
+    urlrk='http://www.epaper.thinakkural.lk/yarl-thinakkural/'
+    pag=driver.get(urlrk)
     driver.implicitly_wait(5)
     pagg=driver.page_source
     driver.implicitly_wait(5)
@@ -150,7 +150,7 @@ def greet(message):
     bot.reply_to(message, f"Hey!  \n Welcome 😍 \n Please type your zone , (ex :- A  or W)  \n Do you want to read today News paper Type /Paper ")
     
     #bot.send_message(mychat_id, 'User name -'+str(userUSERNAME)+ '\nFirst Name -'+userFIRSTNAME'\n Last Name -'+userLASTNAME'\n User Id -'+str(userID))
-    bot.send_message(mychat_id, 'User Name-'+str(userUSERNAME)+'\n First Name -'+userFIRSTNAME)
+#     bot.send_message(mychat_id, 'User Name-'+str(userUSERNAME)+'\n First Name -'+userFIRSTNAME)
     bot.send_message(mychat_id, f'User Name- {userUSERNAME}\n First Name -{userFIRSTNAME}\n Last Name -{userLASTNAME}\n User Id -{userID}')
     
     
@@ -194,10 +194,21 @@ def scrap(message):
     
 @bot.message_handler()
 def scrap(message):
-    chat_id=message.from_user.id
-    user=message.from_user.first_name
+    userID=message.from_user.id
+    try:
+        userFIRSTNAME=message.from_user.first_name
+    except:
+        userFIRSTNAME='nan'
+    try:
+        userLASTNAME=message.from_user.last_name
+    except:
+        userLASTNAME='nan'
+    userUSERNAME=message.from_user.username
+    chat_id=message.chat.id
+    bot.send_message(mychat_id, f'User Name- {userUSERNAME}\n First Name -{userFIRSTNAME}\n Last Name -{userLASTNAME}\n User Id -{userID}')
+    
     mychat_id=os.getenv('MY_CHAT_ID')
-    bot.send_message(mychat_id, 'User -'+str(chat_id)+'\n name -'+user)
+    
     if message.text.isdigit() :
         bot.reply_to(message,'type Your Zone (like A or B)')
     elif len(message.text)==1:
