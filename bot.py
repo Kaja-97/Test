@@ -229,7 +229,8 @@ def scraper(x):
     soup1=soup.find('div',class_="fc-scroller fc-time-grid-container")
     #soup1=BeautifulSoup(ss,'html.parser')
     a=soup1.find_all('a')
- 
+    global A
+    A=[]
     if len(a)==0:
         A=['No Power Cut Today 🤔']
     else:
@@ -250,8 +251,8 @@ def scraper(x):
             table=pd.DataFrame(dic)
             AA=table[table['Zone']==x]
             code_html='*👇👇👇        👇👇👇*' 
-            global A
-            A=[]
+            
+         
             C=[]
             if AA.empty == False:
                 for i in range(len(AA)):
