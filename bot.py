@@ -309,9 +309,9 @@ def Uni_crap():
         subject_url.append(s)
 
     for an in subject_url:
-        url=an
+        urd=an
         global page1
-        driver.get(url)
+        driver.get(url=urd)
         driver.implicitly_wait(5)
         page1=driver.page_source
         soup1=BeautifulSoup(page1,'html.parser')
@@ -329,7 +329,7 @@ def Uni_crap():
 
     dict={'Course Code':Course_Coude,'Subject Name':subject,'subject':subject_url,'Announcement':anounce_url}  
 
-    print('for loop')
+    
     for i,an in enumerate(anounce_url, start=0):
         driver.get(an)
         ll=driver.page_source
@@ -341,27 +341,33 @@ def Uni_crap():
         F=str(list(df.loc[0]))
         F1=list(df.loc[0])
         mess=F1[1]
-        global UNI
+#         global UNI
         SS=str(str(name_sub)+' '+F)
         #date check
         dsa=df['Started by'][0].split()[-3:]
         a=dsa[0]+dsa[1]+dsa[2]
         post_date=pd.to_datetime(a).strftime('%Y-%m-%d')
 
-        if post_date==todayD:
-            bot.send_message(1927939875,name_sub+'\n '+mess.replace('Locked','.'))
+#         if post_date==todayD:
+        bot.send_message(1927939875,name_sub+'\n '+mess.replace('Locked','.'))
         bot.send_message(1927939875,'Uni_scrap fun end')
        
 def allfun():
     while True:
         Uni_crap()
-        driver.implicitly_wait(5)
+        
         bot.send_message(1927939875,'Uni Function thread ended ')
+        print('thread sleep')
         time.sleep(60*1)
 
 ##############################################################################
 
-
+    
+@bot.message_handler(regexp='Uni')
+def scrap(message):
+    Uni_crap()
+    bot.send_message(1927939875,'start fun sep ')
+    
 thred=threading.Thread(target=allfun)
 thred.start()
 
