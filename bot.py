@@ -201,7 +201,7 @@ def scrap(message):
             zz=str(lttr)
             scraper(zz)
             for i in A:
-                bot.reply_to(message,A)
+                bot.reply_to(message,i)
         except Exception:
             bot.reply_to(message,'Please type Your Zone (like A or B)')
     else:
