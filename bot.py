@@ -318,12 +318,12 @@ def Uni_crap():
 
     dict={'Course Code':Course_Coude,'Subject Name':subject,'subject':subject_url,'Announcement':anounce_url}  
 
-country_time_zone = pytz.timezone('Asia/Kolkata')
-country_time = datetime.now(country_time_zone)
-todayD=country_time.strftime('%Y-%m-%d')
-todayT=country_time.strftime('%H-%M-%S')
+    country_time_zone = pytz.timezone('Asia/Kolkata')
+    country_time = datetime.now(country_time_zone)
+    todayD=country_time.strftime('%Y-%m-%d')
+    todayT=country_time.strftime('%H-%M-%S')
 
-    print('for loop')
+    
     for i,an in enumerate(anounce_url, start=0):
         driver.get(an)
         ll=driver.page_source
