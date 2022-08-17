@@ -350,7 +350,7 @@ def Uni_crap():
        
 def allfun():
     while True:
-        fun()
+        Uni_crap()
         bot.send_message(1927939875,'Uni Function ended ')
         time.sleep(60*1)
 
