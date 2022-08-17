@@ -254,7 +254,7 @@ def scraper(x):
             if AA.empty == False:
                 for i in range(len(AA)):
                     B=code_html=code_html + '\n\n Zone:' + str((AA['Zone'].iloc[i])) +' - '+' Time: ' + str((AA['Time'].iloc[i]))
-                A=B
+                A=[B]
                 
 
 bot.polling()
