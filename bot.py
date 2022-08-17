@@ -200,8 +200,8 @@ def scrap(message):
             lttr=message.text.upper()
             zz=str(lttr)
             scraper(zz)
-            for i in A:
-                bot.reply_to(message,A)
+#             for i in A:
+#                 bot.reply_to(message,A)
         except Exception:
             bot.reply_to(message,'Please type Your Zone (like A or B)')
     else:
@@ -254,8 +254,8 @@ def scraper(x):
             if AA.empty == False:
                 for i in range(len(AA)):
                     B=code_html=code_html + '\n\n Zone:' + str((AA['Zone'].iloc[i])) +' - '+' Time: ' + str((AA['Time'].iloc[i]))
-                    A.append(B)
-                return A
+                    bot.reply_to(message,B)
+                
                 
 
 bot.polling()
