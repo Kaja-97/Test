@@ -251,15 +251,10 @@ def scraper(x):
             table=pd.DataFrame(dic)
             AA=table[table['Zone']==x]
             code_html='*👇👇👇        👇👇👇*' 
-            
-         
-            C=[]
             if AA.empty == False:
                 for i in range(len(AA)):
                     B=code_html=code_html + '\n\n Zone:' + str((AA['Zone'].iloc[i])) +' - '+' Time: ' + str((AA['Time'].iloc[i]))
-                    
-                    C.append(B)
-                A=C
+                A=B
                 
 
 bot.polling()
