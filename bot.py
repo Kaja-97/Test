@@ -261,8 +261,12 @@ def scraper(x):
                     B=code_html=code_html + '\n\n Zone:' + str((AA['Zone'].iloc[i])) +' - '+' Time: ' + str((AA['Time'].iloc[i]))
                 A=[B]
                 
+
 def Uni_crap():
-    
+    country_time_zone = pytz.timezone('Asia/Kolkata')
+    country_time = datetime.now(country_time_zone)
+    todayD=country_time.strftime('%Y-%m-%d')
+    todayT=country_time.strftime('%H-%M-%S')
     url1='https://learnousl.ou.ac.lk/login/index.php'
     username='s18001008'
     password='971063114V'
@@ -273,14 +277,8 @@ def Uni_crap():
     # def login():
     
     options=webdriver.ChromeOptions()
-    options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
-    options.add_argument("--headless")
-    options.add_argument('--ignore-certificate-errors')
-    options.add_argument('--incognito')
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-sh-usage")
-    driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
-    driver.implicitly_wait(3)
+    options.headless = True
+    driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
     driver.get(url=url1)
     ### login() .
     driver.find_element('id','username').clear()
@@ -320,12 +318,7 @@ def Uni_crap():
 
     dict={'Course Code':Course_Coude,'Subject Name':subject,'subject':subject_url,'Announcement':anounce_url}  
 
-    country_time_zone = pytz.timezone('Asia/Kolkata')
-    country_time = datetime.now(country_time_zone)
-    todayD=country_time.strftime('%Y-%m-%d')
-    todayT=country_time.strftime('%H-%M-%S')
-
-    
+    print('for loop')
     for i,an in enumerate(anounce_url, start=0):
         driver.get(an)
         ll=driver.page_source
@@ -346,12 +339,12 @@ def Uni_crap():
 
         if post_date==todayD:
             bot.send_message(1927939875,name_sub+'\n '+mess.replace('Locked','.'))
-        bot.send_message(1927939875,'Uni Function ended from fun ')
+        bot.send_message(1927939875,'Uni_scrap fun end')
        
 def allfun():
     while True:
         Uni_crap()
-        bot.send_message(1927939875,'Uni Function ended ')
+        bot.send_message(1927939875,'Uni Function thread ended ')
         time.sleep(60*1)
 
 ##############################################################################
