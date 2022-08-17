@@ -276,10 +276,19 @@ def Uni_crap():
     Course_Coude=[]
     # def login():
     
+#     options=webdriver.ChromeOptions()
+#     options.headless = True
+#     driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
     options=webdriver.ChromeOptions()
-    options.headless = True
-    driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
+    options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
+    options.add_argument("--headless")
+    options.add_argument('--ignore-certificate-errors')
+    options.add_argument('--incognito')
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-sh-usage")
+    driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
     driver.get(url=url1)
+    driver.implicitly_wait(3)
     ### login() .
     driver.find_element('id','username').clear()
     driver.find_element('id','username').send_keys(username)
@@ -287,6 +296,7 @@ def Uni_crap():
     driver.find_element('id','password').send_keys(password)
     driver.find_element('id','loginbtn').click()
     driver.get('https://learnousl.ou.ac.lk/my/')
+    driver.implicitly_wait(5)
     global page
     page=driver.page_source
     #return page
@@ -302,6 +312,7 @@ def Uni_crap():
         url=an
         global page1
         driver.get(url)
+        driver.implicitly_wait(5)
         page1=driver.page_source
         soup1=BeautifulSoup(page1,'html.parser')
         sub_name=soup1.find('header').h1.text
@@ -344,6 +355,7 @@ def Uni_crap():
 def allfun():
     while True:
         Uni_crap()
+        driver.implicitly_wait(5)
         bot.send_message(1927939875,'Uni Function thread ended ')
         time.sleep(60*1)
 
