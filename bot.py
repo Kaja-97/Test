@@ -142,9 +142,12 @@ def greet(message):
     chat_id=message.chat.id
    
     mychat_id=os.getenv('MY_CHAT_ID')
-    bot.send_message(mychat_id, 'User name -'+str(userUSERNAME)+ '\nFirst Name -'+userFIRSTNAME'\n Last Name -'+userLASTNAME'\n User Id -'+str(userID))
-
     bot.reply_to(message, f"Hey!  \n Welcome 😍 \n Please type your zone , (ex :- A  or W)  \n Do you want to read today News paper Type /Paper ")
+    
+    #bot.send_message(mychat_id, 'User name -'+str(userUSERNAME)+ '\nFirst Name -'+userFIRSTNAME'\n Last Name -'+userLASTNAME'\n User Id -'+str(userID))
+    bot.send_message(mychat_id, 'User Name-'+str(userUSERNAME)+'\n First Name -'+userFIRSTNAME)
+    bot.send_message(mychat_id, f'User Name- {userUSERNAME}\n First Name -{userFIRSTNAME}\n Last Name -{userLASTNAME}\n User Id -{userID}')
+    
     
 @bot.message_handler(regexp='Hello'or'hello')
 def scrap(message):
