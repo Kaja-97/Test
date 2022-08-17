@@ -250,11 +250,13 @@ def scraper(x):
             table=pd.DataFrame(dic)
             AA=table[table['Zone']==x]
             code_html='*👇👇👇        👇👇👇*' 
+            global A
             A=[]
+            C=[]
             if AA.empty == False:
                 for i in range(len(AA)):
                     B=code_html=code_html + '\n\n Zone:' + str((AA['Zone'].iloc[i])) +' - '+' Time: ' + str((AA['Time'].iloc[i]))
-                    C=[]
+                    
                     C.append(B)
                 A=C
                 
