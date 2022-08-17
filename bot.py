@@ -200,8 +200,8 @@ def scrap(message):
             lttr=message.text.upper()
             zz=str(lttr)
             scraper(zz)
-#             for i in A:
-            bot.reply_to(message,A)
+            for i in A:
+                bot.reply_to(message,A)
         except Exception:
             bot.reply_to(message,'Please type Your Zone (like A or B)')
     else:
@@ -229,7 +229,7 @@ def scraper(x):
     soup1=soup.find('div',class_="fc-scroller fc-time-grid-container")
     #soup1=BeautifulSoup(ss,'html.parser')
     a=soup1.find_all('a')
-    global A
+ 
     if len(a)==0:
         A=['No Power Cut Today 🤔']
     else:
@@ -255,6 +255,7 @@ def scraper(x):
                 for i in range(len(AA)):
                     B=code_html=code_html + '\n\n Zone:' + str((AA['Zone'].iloc[i])) +' - '+' Time: ' + str((AA['Time'].iloc[i]))
                     A.append(B)
-                    
+                return A
+                
 
 bot.polling()
