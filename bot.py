@@ -370,12 +370,12 @@ def allfun():
         mychat_id=os.getenv('MY_CHAT_ID')
         bot.send_message(mychat_id,'Uni Function thread ended ')
         print('thread sleep')
-        time.sleep(60*60*6)
+        time.sleep(60*30)
 
 ##############################################################################
 
     
-@bot.message_handler(regexp='Uni')
+@bot.message_handler(commands=['UUni'])
 def scrap(message):
     Uni_crap()
     mychat_id=os.getenv('MY_CHAT_ID')
