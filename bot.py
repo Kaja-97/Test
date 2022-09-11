@@ -337,7 +337,7 @@ def Uni_crap():
             #print(an)
             anounce_url.append(an)
         except Exception :
-            #print('link not found ,need to change code')
+            print('link not found ,need to change code')
 
     dict={'Course Code':Course_Coude,'Subject Name':subject,'subject':subject_url,'Announcement':anounce_url}  
 
@@ -368,8 +368,8 @@ def allfun():
     while True:
         Uni_crap()
         mychat_id=os.getenv('MY_CHAT_ID')
-        bot.send_message(mychat_id,'Uni Function thread ended ')
-        print('thread sleep')
+        #bot.send_message(mychat_id,'Uni Function thread ended ')
+        #print('thread sleep')
         time.sleep(60*30)
 
 ##############################################################################
