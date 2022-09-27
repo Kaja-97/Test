@@ -265,7 +265,7 @@ def scraper(x):
             Time.append(time)
             zone=a.find('span',class_='badge border border-light text-light fw-500').getText()
             Zone.append(zone)
-        
+        bot.reply_to(message,Zone)
         print(Zone)
         dic={'Zone':Zone,'Time':Time}
 
@@ -279,6 +279,7 @@ def scraper(x):
                 for i in range(len(AA)):
                     B=code_html=code_html + '\n\n Zone:' + str((AA['Zone'].iloc[i])) +' - '+' Time: ' + str((AA['Time'].iloc[i]))
                 A=[B]
+                bot.reply_to(message,'fun runed')
                 
 
 def Uni_crap():
