@@ -226,7 +226,19 @@ def scrap(message):
         
 ########### telegram bot'''#########################################
 def scraper(x):
+    
+#       path="chromedriver.exe"
+#     options=webdriver.ChromeOptions()
+#     options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
+#     options.add_argument("--headless")
+#     options.add_argument('--ignore-certificate-errors')
+#     options.add_argument('--incognito')
+#     options.add_argument("--no-sandbox")
+#     options.add_argument("--disable-dev-sh-usage")
+#     driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
+#     driver.implicitly_wait(3)
     ######################################################################################
+    servic=Service("CHROMEDRIVER_PATH")
     path="chromedriver.exe"
     options=webdriver.ChromeOptions()
     options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
@@ -235,7 +247,7 @@ def scraper(x):
     options.add_argument('--incognito')
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-sh-usage")
-    driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
+    driver =webdriver.Chrome(service=servic,chrome_options=options)
     driver.implicitly_wait(3)
     ###############################################################hhhhhhhhh######################
     
