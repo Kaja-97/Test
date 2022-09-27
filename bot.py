@@ -78,7 +78,7 @@ def Veerakesari(message):
                 # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver",options=options)
                 driver.get(ur)
                 driver.implicitly_wait(5)
-                soup=BeautifulSoup(driver.page_source,'html')
+                soup=BeautifulSoup(driver.page_source,'html.parser')
                 paperpg=soup.find('img',id='pageImage')['src']
                 driver.implicitly_wait(3)
                 bot.send_photo(chat_id, paperpg, protect_content=True ,disable_notification=True)
@@ -227,14 +227,16 @@ def scrap(message):
 ########### telegram bot'''#########################################
 def scraper(x):
     ######################################################################################
+    path="chromedriver.exe"
     options=webdriver.ChromeOptions()
     options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
     options.add_argument("--headless")
-#     options.add_argument('--ignore-certificate-errors')
-#     options.add_argument('--incognito')
-#     options.add_argument("--no-sandbox")
-#     options.add_argument("--disable-dev-sh-usage")
+    options.add_argument('--ignore-certificate-errors')
+    options.add_argument('--incognito')
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-sh-usage")
     driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
+    driver.implicitly_wait(3)
     ###############################################################hhhhhhhhh######################
     
     # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver.exe",chrome_options=options)
