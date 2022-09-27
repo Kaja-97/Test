@@ -227,18 +227,8 @@ def scrap(message):
 ########### telegram bot'''#########################################
 def scraper(x):
     
-#       path="chromedriver.exe"
-#     options=webdriver.ChromeOptions()
-#     options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
-#     options.add_argument("--headless")
-#     options.add_argument('--ignore-certificate-errors')
-#     options.add_argument('--incognito')
-#     options.add_argument("--no-sandbox")
-#     options.add_argument("--disable-dev-sh-usage")
-#     driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
-#     driver.implicitly_wait(3)
+
     ######################################################################################
-    servic=Service("CHROMEDRIVER_PATH")
     path="chromedriver.exe"
     options=webdriver.ChromeOptions()
     options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
@@ -247,13 +237,13 @@ def scraper(x):
     options.add_argument('--incognito')
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-sh-usage")
-    driver =webdriver.Chrome(service=servic,chrome_options=options)
+    driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
     driver.implicitly_wait(3)
     ###############################################################hhhhhhhhh######################
     
     # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver.exe",chrome_options=options)
-    url='https://cebcare.ceb.lk/Incognito/DemandMgmtSchedule'
-    pag=driver.get('https://cebcare.ceb.lk/Incognito/DemandMgmtSchedule')
+    url5='https://cebcare.ceb.lk/Incognito/DemandMgmtSchedule'
+    pag=driver.get(url=url5)
     driver.implicitly_wait(3)
     pagg=driver.page_source
     soup=BeautifulSoup(pagg,'html.parser')
@@ -382,7 +372,7 @@ def allfun():
     while True:
         Uni_crap()
         mychat_id=os.getenv('MY_CHAT_ID')
-        #bot.send_message(mychat_id,'Uni Function thread ended ')
+        bot.send_message(mychat_id,'Uni Function thread ended ')
         #print('thread sleep')
         time.sleep(60*30)
 
