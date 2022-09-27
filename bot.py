@@ -227,7 +227,7 @@ def scrap(message):
 ########### telegram bot'''#########################################
 def scraper(x):
     
-
+    print('01')
     ######################################################################################
     path="chromedriver.exe"
     options=webdriver.ChromeOptions()
@@ -240,16 +240,18 @@ def scraper(x):
     driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
     driver.implicitly_wait(3)
     ###############################################################hhhhhhhhh######################
-    
+    print('1')
     # driver =webdriver.Chrome(executable_path=r"C:\Users\kajan\Desktop\Python\Web Scraping\chromedriver.exe",chrome_options=options)
     url5='https://cebcare.ceb.lk/Incognito/DemandMgmtSchedule'
     pag=driver.get(url=url5)
+    print('2')
     driver.implicitly_wait(3)
     pagg=driver.page_source
     soup=BeautifulSoup(pagg,'html.parser')
     soup1=soup.find('div',class_="fc-scroller fc-time-grid-container")
     #soup1=BeautifulSoup(ss,'html.parser')
     a=soup1.find_all('a')
+    print(a)
     global A
     A=[]
     if len(a)==0:
@@ -263,6 +265,7 @@ def scraper(x):
             Time.append(time)
             zone=a.find('span',class_='badge border border-light text-light fw-500').getText()
             Zone.append(zone)
+        
         print(Zone)
         dic={'Zone':Zone,'Time':Time}
 
@@ -366,7 +369,7 @@ def Uni_crap():
         mychat_id=os.getenv('MY_CHAT_ID')
         if post_date==todayD:
             bot.send_message(mychat_id,name_sub+'\n '+mess.replace('Locked','.'))
-        #bot.send_message(mychat_id,'Uni_scrap fun end')
+        bot.send_message(mychat_id,'Uni_scrap fun end')
        
 def allfun():
     while True:
