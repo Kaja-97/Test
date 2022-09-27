@@ -230,10 +230,10 @@ def scraper(x):
     options=webdriver.ChromeOptions()
     options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
     options.add_argument("--headless")
-    options.add_argument('--ignore-certificate-errors')
-    options.add_argument('--incognito')
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-sh-usage")
+#     options.add_argument('--ignore-certificate-errors')
+#     options.add_argument('--incognito')
+#     options.add_argument("--no-sandbox")
+#     options.add_argument("--disable-dev-sh-usage")
     driver =webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=options)
     ###############################################################hhhhhhhhh######################
     
@@ -259,7 +259,7 @@ def scraper(x):
             Time.append(time)
             zone=a.find('span',class_='badge border border-light text-light fw-500').getText()
             Zone.append(zone)
-            
+        print(Zone)
         dic={'Zone':Zone,'Time':Time}
 
         if x not in Zone:
