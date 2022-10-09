@@ -370,13 +370,13 @@ def Uni_crap():
         mychat_id=os.getenv('MY_CHAT_ID')
         if post_date==todayD:
             bot.send_message(mychat_id,name_sub+'\n '+mess.replace('Locked','.'))
-        bot.send_message(mychat_id,'Uni_scrap fun end')
+#         bot.send_message(mychat_id,'Uni_scrap fun end')
        
 def allfun():
     while True:
         Uni_crap()
         mychat_id=os.getenv('MY_CHAT_ID')
-        bot.send_message(mychat_id,'Uni Function thread ended ')
+#         bot.send_message(mychat_id,'Uni Function thread ended ')
         #print('thread sleep')
         time.sleep(60*30)
 
@@ -387,7 +387,7 @@ def allfun():
 def scrap(message):
     Uni_crap()
     mychat_id=os.getenv('MY_CHAT_ID')
-    bot.send_message(mychat_id,'start fun sep ')
+#     bot.send_message(mychat_id,'start fun sep ')
     
 thred=threading.Thread(target=allfun)
 thred.start()
